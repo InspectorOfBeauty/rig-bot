@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="create_table_application_data" author="author">
+        <createTable tableName="application_data">
+            <column autoIncrement="true" name="id" type="integer">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="rig_survey_switcher" type="boolean">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="since_rig_offline" type="datetime">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="prev_rig_offline_notification" type="datetime">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="since_rig_drop" type="datetime">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="prev_rig_drop_notification" type="datetime">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="notification_interval" type="int">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="rig_power_drop_coefficient" type="double">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_table_rig_data" author="author">
+        <createTable tableName="rig_data">
+            <column autoIncrement="true" name="id" type="integer">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="status" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="hashrate" type="decimal">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="day_hashrate" type="decimal">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="data_time" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_table_users" author="author">
+        <createTable tableName="users">
+            <column autoIncrement="true" name="id" type="integer">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="login" type="varchar(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+
+            <column name="password" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="role_name" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_table_user_sessions" author="author">
+        <createTable tableName="user_sessions">
+            <column autoIncrement="true" name="id" type="integer">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="chat_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="user_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="last_user_action" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="user_auth_status" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_foreign_keys" author="author">
+        <addForeignKeyConstraint baseTableName="user_sessions"
+                                 baseColumnNames="user_id"
+                                 constraintName="FK_USER_SESSIONS_ON_USERS"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="insert_into_application_data" author="author">
+        <insert tableName="application_data">
+            <column name="rig_survey_switcher" value="true"/>
+            <column name="notification_interval" value="15"/>
+            <column name="rig_power_drop_coefficient" value="0.75"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert_into_users" author="author">
+        <insert tableName="users">
+            <column name="login" value="user_login"/>
+            <column name="password" value="user_password"/>
+            <column name="role_name" value="0"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="login" value="admin_login"/>
+            <column name="password" value="admin_password"/>
+            <column name="role_name" value="1"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
