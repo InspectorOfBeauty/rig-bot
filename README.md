@@ -50,7 +50,7 @@ The key features of the bot are:
 <br><br>
 
 
-## APPLIED TECHNOLOGIES <br>
+## USED TECHNOLOGIES <br>
 ### Previously used technologies:
 - spring-boot-starter
 - hibernate-core
