@@ -17,7 +17,7 @@ The key features of the bot are:
 
 
 ## QUICK START
-### Configuration:
+### Configuration
 1. Create a **"config"** folder in the same directory as the bot.
 2. Create the configuration file **"application.properties"** in the "config" folder.
 3. In the created file, specify the following settings, be sure to specify the pool address, bot name and token:
@@ -42,7 +42,7 @@ The key features of the bot are:
         </insert>
     </changeSet>
 ```
-### Getting Started:
+### Getting Started
 1. Build a project using maven.
 2. Put the compiled project (rig-bot-1.3.3.jar) in the directory where the configuration folder (config) is located.
 3. Install Java >= 17.
@@ -51,13 +51,13 @@ The key features of the bot are:
 
 
 ## USED TECHNOLOGIES <br>
-### Previously used technologies:
+### Previously used technologies
 - spring-boot-starter
 - hibernate-core
 - spring-boot-starter-data-jpa
 
 
-### New technologies specifically for this project:
+### New technologies specifically for this project
 - telegram bot api
 - h2
 - logback + slf4j
