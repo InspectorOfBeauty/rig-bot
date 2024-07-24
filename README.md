@@ -5,7 +5,6 @@ It solves the problem of tracking the status of a farm connected to the binance 
 
 
 ## KEY FEATURES
-The key features of the bot are:
 - interval survey of rig status, saving and analyzing hashrates;
 - notification of an authorized user about a problem (offline farm, power drop);
 - clearing the farm status table every 24 hours;
@@ -18,15 +17,15 @@ The key features of the bot are:
 
 ## QUICK START
 ### Configuration
-1. Create a **"config"** folder in the same directory as the bot.
-2. Create the configuration file **"application.properties"** in the "config" folder.
+1. Create a `config` folder in the same directory as the bot.
+2. Create the configuration file `application.properties` in the `config` folder.
 3. In the created file, specify the following settings, be sure to specify the pool address, bot name and token:
 ```
    rig.data.url=poolAddress
    telegram.bot.name=botName
    telegram.bot.token=botToken
 ```
-4. In the configuration file **0-initiallog.xml** (src/main/resources/db/changelog/) in the changeSet with the id "insert_into_users " specify users with the desired username, password and role:
+4. In the configuration file `0-initiallog.xml` (src/main/resources/db/changelog/) in the changeSet with the id `insert_into_users` specify users with the desired username, password and role:
 ```
     <changeSet id="insert_into_users" author="author">
         <insert tableName="users">
@@ -43,10 +42,10 @@ The key features of the bot are:
     </changeSet>
 ```
 ### Getting Started
-1. Build a project using maven.
+1. Build a project using maven goal `package`.
 2. Put the compiled project (rig-bot-1.3.3.jar) in the directory where the configuration folder (config) is located.
 3. Install Java >= 17.
-4. Launch the bot using the command line and the command "java –jar rig-bot-1.3.3.jar".
+4. Launch the bot using the command line and the command `java –jar rig-bot-1.3.3.jar`.
 <br><br>
 
 
